@@ -104,6 +104,15 @@ The script automatically selects `dataset.json` (English) or `dataset.zh.json` (
 
 ---
 
+## 📚 References
+
+This framework is inspired by and extends concepts from:
+
+- [Easy Problems That LLMs Get Wrong](https://github.com/autogenai/easy-problems-that-llms-get-wrong) - A collection of seemingly simple problems that LLMs often fail on
+- [arXiv:2405.19616v2](https://arxiv.org/html/2405.19616v2) - Research paper documenting LLM failure modes
+
+---
+
 ## 🤝 Contributing
 
 Issues and Pull Requests are welcome to improve test questions or scoring criteria.

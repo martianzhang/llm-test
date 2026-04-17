@@ -104,6 +104,15 @@ python scripts/dataset_query.py get <index>
 
 ---
 
+## 📚 参考资料
+
+本测试框架的灵感来源与扩展参考：
+
+- [Easy Problems That LLMs Get Wrong](https://github.com/autogenai/easy-problems-that-llms-get-wrong) - 收集看似简单但大语言模型经常出错的问题
+- [arXiv:2405.19616v2](https://arxiv.org/html/2405.19616v2) - 研究论文，记录大语言模型的失败模式
+
+---
+
 ## 🤝 贡献
 
 欢迎提交 Issue 或 Pull Request 来改进测试题目或评分标准。
