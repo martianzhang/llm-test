@@ -1,34 +1,122 @@
 ---
 name: llm-test
-description: 大语言模型能力测试框架 — 系统化评估 LLM 在数学推理、常识判断、因果逻辑、字符识别、亲属关系、本土知识等多个维度的表现。适用于评测 GPT、Claude、Gemini、通义千问、DeepSeek 等主流大语言模型。
+description: Large Language Model Capability Testing Framework — Systematically evaluates LLMs on mathematical reasoning, commonsense judgment, causal logic, character recognition, kinship relations, and local knowledge. Suitable for testing GPT, Claude, Gemini, Qwen, DeepSeek and other mainstream LLMs.
 metadata:
   author: martianzhang
 ---
 
-# 大语言模型能力测试框架
+# Large Language Model Capability Testing Framework
 
-## 第一步
+## Script Location
 
-读取“大语言模型测试_提示词.md”的提示词，逐个调用 SubAgent 并行作答。
+The script is located at: `<skill-base>/scripts/dataset_query.py`
 
-## 第二步
+Where `<skill-base>` is the skill's base directory.
 
-等待所有 SubAgent 作答完毕，记录大语言模型每个提示词的回答结果。
+**Note:** This script requires **Python 3**. On Windows, use `python`; on Linux/macOS, use `python3` or `python`.
 
-## 第三步
+## Step 1
 
-解密 base64 编码的答案文件 大语言模型测试_答案.enc.md，对比正确答案与大模型的回答。
+Use `dataset_query.py` to fetch all test questions.
+
+**Language Selection:** The script defaults to English dataset, and automatically switches to Chinese dataset when Chinese input is detected. You can also specify manually:
+
+**Language Detection Rules:**
+1. Command-line argument `-l zh` or `--lang zh` → Use Chinese dataset
+2. Command-line argument `-l en` or `--lang en` → Use English dataset
+3. User input contains Chinese characters → Auto-use Chinese dataset
+4. Otherwise → Use English dataset
 
 ```bash
-# Mac/Linux
-cat 大语言模型测试_答案.enc.md | base64 -d
+# Option 1: Use full path (recommended)
+python <skill-base>/scripts/dataset_query.py total -l en
+python <skill-base>/scripts/dataset_query.py question 1 -l zh
+
+# Option 2: cd to skill base directory first
+cd <skill-base>
+python scripts/dataset_query.py total -l en
+python scripts/dataset_query.py categories -l zh
 ```
 
-```powershell
-# Windows
-certutil -decode "大语言模型测试_答案.enc.md" 大语言模型测试_答案.md
+## Step 2
+
+```bash
+# Get a specific question
+python <skill-base>/scripts/dataset_query.py question <index> -l <language>
 ```
 
-## 第四步
+Let the LLM answer questions one by one, and record its responses.
 
-输出报告，以表格形式展示大模型回答情况并进行简要评价。
+## Step 3
+
+Compare the correct answers to evaluate LLM performance.
+
+```bash
+# Get a specific answer (for scoring only)
+python <skill-base>/scripts/dataset_query.py answer <index> -l <language>
+```
+
+## Step 4
+
+Output a report with a table showing the LLM's performance and a brief evaluation.
+
+---
+
+## Evaluation Report Format
+
+### 1. Overview
+
+```
+┌─────────────────────────────────────┐
+│  LLM Capability Evaluation Report   │
+├─────────────────────────────────────┤
+│  Model Name: [TBD]                  │
+│  Evaluation Date: [TBD]             │
+│  Total Questions: XX                │
+│  Correct Answers: XX                │
+│  Accuracy: XX%                      │
+└─────────────────────────────────────┘
+```
+
+### 2. Category Scores
+
+| Category | Total | Correct | Accuracy |
+|----------|-------|---------|----------|
+| Math | X | X | XX% |
+| Spatial | X | X | XX% |
+| Common Sense | X | X | XX% |
+| Logic | X | X | XX% |
+| Counting | X | X | XX% |
+| Relational | X | X | XX% |
+| Linguistic | X | X | XX% |
+| Chinese Culture | X | X | XX% |
+| Chinese Characters | X | X | XX% |
+| Safety | X | X | XX% |
+
+### 3. Detailed Answer Records
+
+| # | Category | Question | Correct Answer | Model Answer | Result |
+|---|----------|----------|---------------|--------------|--------|
+| 1 | Puzzle | [Summary...] | [Answer] | [Model Answer] | ✅/❌ |
+| ... | ... | ... | ... | ... | ... |
+
+### 4. Error Analysis
+
+```
+Top 3 Missed Questions:
+1. [#] [Category] - [Error analysis]
+2. [#] [Category] - [Error analysis]
+3. [#] [Category] - [Error analysis]
+```
+
+### 5. Capability Assessment
+
+**Strengths:**
+- [Description]
+
+**Weaknesses:**
+- [Description]
+
+**Suggestions for Improvement:**
+- [Description]
+

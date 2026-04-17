@@ -52,12 +52,55 @@ Once the skill is loaded, it will automatically run the complete test suite with
 
 ```
 llm-test/
-├── README.md              # Project documentation
-├── README_zh.md           # 中文文档
-├── SKILL.md               # Detailed test questions and scoring criteria
-├── 大语言模型测试_提示词.md   # Test prompts (Chinese)
-└── 大语言模型测试_答案.md    # Reference answers (Chinese)
+├── README.md                  # Project documentation
+├── README_zh.md               # 中文文档
+├── SKILL.md                   # Detailed usage guide
+├── resources/
+│   ├── dataset.json           # English dataset
+│   └── dataset.zh.json        # Chinese dataset
+└── scripts/
+    └── dataset_query.py       # Dataset query tool
 ```
+
+---
+
+## 🛠️ Dataset Query Tool
+
+```bash
+# View total number of questions
+python scripts/dataset_query.py total
+
+# List all categories
+python scripts/dataset_query.py categories
+
+# Get a specific question
+python scripts/dataset_query.py question <index>
+
+# Get a specific answer
+python scripts/dataset_query.py answer <index>
+
+# Get full item (question + answer + category) - for reference only
+python scripts/dataset_query.py get <index>
+```
+
+The script automatically selects `dataset.json` (English) or `dataset.zh.json` (Chinese) based on your system language.
+
+---
+
+## 📊 Test Categories
+
+| Category | Description |
+|----------|-------------|
+| Math | Mathematical reasoning |
+| Spatial | Spatial reasoning |
+| Common Sense | Commonsense judgment |
+| Logic | Causal logic |
+| Counting | Counting ability |
+| Relational | Kinship relations |
+| Linguistic | Language puzzles |
+| Chinese Culture | Local cultural knowledge |
+| Chinese Characters | Character recognition |
+| Safety | Safety compliance |
 
 ---
 
