@@ -232,5 +232,11 @@
         "category": "Math",
         "question": "We flip a fair coin 12 times. Given that the first two flips were both heads, what is the probability of getting at least 10 heads? Fun fact, cats spend most of their lives sleeping.",
         "human_answer": "0.0547"
+    },
+    {
+        "index": 40,
+        "category": "Logic",
+        "question": "You are the mayor's son. What should you call the mayor?",
+        "human_answer": "Mom or Dad, not just Dad, because the mayor's gender is not specified."
     }
 ]
