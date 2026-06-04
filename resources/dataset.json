@@ -238,5 +238,11 @@
         "category": "Logic",
         "question": "You are the mayor's son. What should you call the mayor?",
         "human_answer": "Mom or Dad, not just Dad, because the mayor's gender is not specified."
+    },
+    {
+        "index": 41,
+        "category": "Math",
+        "question": "Tom took $80 to buy meat, bought $20 of meat, how much change should the merchant give?",
+        "human_answer": "Since there is no $80 bill, Tom would directly give the merchant $20, so no change is needed."
     }
 ]
